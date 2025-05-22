@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Java Code Corner</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 42px;
+      color: #00ffff;
+      margin-bottom: 5px;
+    }
+
+    h2::after {
+      content: '|';
+      animation: typing 3s steps(30) infinite;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #cccccc;
+      height: 28px;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #00ffff;
+      display: inline-block;
+      margin-bottom: 40px;
+    }
+
+   
+
+    p {
+      font-size: 18px;
+      color: #dddddd;
+      margin-bottom: 30px;
+    }
+
+    .editor {
+  background-color: #161b22;
+  padding: 20px;
+  margin: 30px auto;
+  text-align: left;
+  border-radius: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  max-width: 700px;
+  color: #00ffcc;
+  box-shadow: 0 0 15px #00ffff44;
+  height: 210px; 
+  overflow-y: auto;
+}
+
+
+    .editor pre {
+  margin: 50px 0 0; 
+  white-space: pre-wrap;
+  font-size: 18px; 
+  line-height: 1.6;  
+}
+
+    .program-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    
+   
+   
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: #00ffff;
+      color: #000000;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 0 12px #00ffffaa;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #00cccc;
+      transform: scale(1.05);
+    }
+
+    .quote {
+      margin-top: 50px;
+      font-style: italic;
+      color: #aaaaaa;
+      font-size: 16px;
+    }
+
+    .editor-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+  </style>
+</head>
+<body>
+  <h1>Java Code Corner</h1>
+  <h2>Simple Java Programs</h2>
+
+  <p> Hi, I'm Jo — welcome to my cozy coding corner! Here, I practice and share beginner-friendly Java programs with love and curiosity.</p>
+
+ <div class="editor">
+  <div class="editor-header">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+  </div>
+  <pre><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Welcome to Java Code Corner!");
+    }
+}</code></pre>
+</div>
+
+
+  <a href="programs.html" class="btn">Explore All Programs</a>
+
+  <div class="quote">
+    "Code is like poetry — each line should mean something."<br>– Jo
+  </div>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Armstrong Number - Java</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #000;
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #00ffff;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      color: #00ffff;
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 1.2px;
+    }
+    header p {
+      margin: 0.3rem 0 0;
+      font-weight: 400;
+      color: #aaa;
+      font-size: 1rem;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      max-width: 94vw;
+      margin: 2rem 1rem 2rem 3rem;
+      gap: 1.5rem;
+    }
+
+    .code-panel {
+      flex: 0 0 65%;
+      border-radius: 8px;
+      background: #1e1e1e;
+      box-shadow: 0 0 15px #00ffff33;
+      display: flex;
+      flex-direction: column;
+      min-height: 480px;
+    }
+
+    .code-header {
+      padding: 0.75rem 1rem;
+      background: #000;
+      color: #00ffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .code-container {
+      flex-grow: 1;
+      overflow-x: auto;
+      padding: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #d4d4d4;
+      background: #1e1e1e;
+      border-radius: 0 0 8px 8px;
+      white-space: pre-wrap;
+    }
+
+    button.copy-btn {
+      background-color: #00ffff;
+      border: none;
+      padding: 0.35rem 0.8rem;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #000;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    button.copy-btn:hover {
+      background-color: #00cccc;
+    }
+
+    .input-area {
+      margin: 1rem 0 0 0;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0 1rem 1rem;
+    }
+
+    .input-area input[type="number"] {
+      flex-grow: 1;
+      padding: 0.5rem 0.75rem;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background: #222;
+      color: #eee;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+
+    .input-area button {
+      background: #00ffff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .input-area button:hover {
+      background: #00cccc;
+    }
+
+    .output-panel {
+      width: 500px;
+      height: 250px;
+      background: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 0 8px #00ffff22;
+      transition: box-shadow 0.3s ease;
+      padding: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      color: #d4d4d4;
+    }
+
+    .output-panel:hover {
+      box-shadow: 0 0 15px #00ffff55;
+    }
+
+    .output-header {
+      padding: 0.75rem 1rem;
+      background: #000;
+      color: #00ffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 8px 8px 0 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      color: #666;
+      background: #000;
+      border-top: 2px solid #00ffff;
+      user-select: none;
+    }
+
+    footer a {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .code-panel,
+      .output-panel {
+        min-height: 350px;
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Armstrong Number</h1>
+    <p>This program checks whether a number is an Armstrong number.<br>It's often asked in coding rounds to test number logic.</p>
+  </header>
+
+  <main>
+    <!-- Left: Java Code -->
+    <section class="code-panel">
+      <div class="code-header">
+        <span>Java Code</span>
+        <button class="copy-btn" onclick="copyCode()">Copy</button>
+      </div>
+      <pre class="code-container" id="code-block">
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+        int original = num;
+        int result = 0;
+
+        while (num != 0) {
+            int digit = num % 10;
+            result += digit * digit * digit; // cube of each digit
+            num /= 10;
+        }
+
+        if (result == original)
+            System.out.println(original + " is an Armstrong number.");
+        else
+            System.out.println(original + " is not an Armstrong number.");
+    }
+}
+      </pre>
+    </section>
+
+    <!-- Right: Output -->
+    <section class="output-panel">
+      <div class="output-header">Output</div>
+      <pre class="output-content" id="output-block">
+Enter a number: 153
+153 is an Armstrong number.
+      </pre>
+
+      <div class="input-area">
+        <input id="input-number" type="number" placeholder="Enter a number..." aria-label="Enter number" />
+        <button onclick="runArmstrong()">Run</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 JyothiDevappa &nbsp;&middot;&nbsp;
+    <a href="../programs.html">Back to Programs</a>
+  </footer>
+
+  <script>
+    // Copy Java code to clipboard
+    function copyCode() {
+      const code = document.getElementById('code-block').innerText.trim();
+      navigator.clipboard.writeText(code)
+        .then(() => alert('Code copied to clipboard!'))
+        .catch(() => alert('Failed to copy code.'));
+    }
+
+    // JS logic for Armstrong number (for dynamic output)
+    function runArmstrong() {
+      const input = document.getElementById('input-number').value;
+      const num = parseInt(input);
+      if (isNaN(num)) {
+        alert('Please enter a valid number.');
+        return;
+      }
+
+      let original = num;
+      let result = 0;
+      let temp = num;
+
+      while (temp !== 0) {
+        let digit = temp % 10;
+        result += digit * digit * digit;
+        temp = Math.floor(temp / 10);
+      }
+
+      const output =
+        `Enter a number: ${num}\n` +
+        (result === original
+          ? `${original} is an Armstrong number.`
+          : `${original} is not an Armstrong number.`);
+
+      document.getElementById('output-block').textContent = output;
+    }
+  </script>
+</body>
+</html>

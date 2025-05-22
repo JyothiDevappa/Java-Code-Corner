@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Multiplication Table - Java</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    background-color: #121212;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background: #000;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #00ffff;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
+  }
+  header p {
+    margin: 0.3rem 0 0;
+    font-weight: 400;
+    color: #aaa;
+    font-size: 1rem;
+    white-space: pre-line;
+  }
+  main {
+    flex-grow: 1;
+    display: flex;
+    max-width: 1900px;
+    margin: 2rem auto;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+  main {
+    flex-grow: 1;
+    display: flex;
+    max-width: 94vw;
+    margin: 2rem 1rem 2rem 3rem; 
+    gap: 1.5rem;
+  }
+  .code-panel {
+    flex: 0 0 65%;
+    border-radius: 8px;
+    background: #1e1e1e;
+    box-shadow: 0 0 15px #00ffff33;
+    display: flex;
+    flex-direction: column;
+    min-height: 480px;
+  }
+  .code-header {
+    padding: 0.75rem 1rem;
+    background: #000;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .code-container {
+    flex-grow: 1;
+    overflow-x: auto;
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    background: #1e1e1e;
+    border-radius: 0 0 8px 8px;
+    white-space: pre-wrap;
+  }
+  button.copy-btn {
+    background-color: #00ffff;
+    border: none;
+    padding: 0.35rem 0.8rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button.copy-btn:hover {
+    background-color: #00cccc;
+  }
+  .output-header {
+    padding: 0.75rem 1rem;
+    background: #000;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px 8px 0 0;
+  }
+  .input-area {
+    margin: 1rem 0 0 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0 1rem 1rem;
+  }
+  .input-area input[type="number"] {
+    flex-grow: 1;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #222;
+    color: #eee;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+  .input-area button {
+    background: #00ffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .input-area button:hover {
+    background: #00cccc;
+  }
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    color: #666;
+    background: #000;
+    border-top: 2px solid #00ffff;
+    user-select: none;
+  }
+  footer a {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    main {
+      flex-direction: column;
+    }
+    .code-panel, .output-panel {
+      min-height: 350px;
+      margin-bottom: 2rem;
+    }
+  }
+  .output-panel {
+    width: 500px;
+    min-height: 250px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #00ffff22;
+    transition: box-shadow 0.3s ease;
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #d4d4d4;
+    white-space: pre-wrap;
+  }
+  .output-panel:hover {
+    box-shadow: 0 0 15px #00ffff55;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Multiplication Table</h1>
+  <p>This program prints the multiplication table for a given number.<br>Perfect for practicing loops and user input in Java.</p>
+</header>
+
+<main>
+  <!-- Left: Code panel -->
+  <section class="code-panel" aria-label="Code example">
+    <div class="code-header">
+      <span>Java Code</span>
+      <button class="copy-btn" onclick="copyCode()">Copy</button>
+    </div>
+    <pre class="code-container" id="code-block">
+// Java program to print multiplication table of a number
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("enter a number");
+        int number = scanner.nextInt(); // Read the input number
+        
+        // Loop to print the multiplication table
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " x " + i + " = " + (number * i));
+        }
+    }
+}
+    </pre>
+  </section>
+
+  <!-- Right: Output panel -->
+  <section class="output-panel" aria-label="Program output">
+    <div class="output-header">Output</div>
+    <pre class="output-content" id="output-block">
+Enter a number and click Run to see the multiplication table.
+    </pre>
+
+    <div class="input-area">
+      <input id="input-number" type="number" placeholder="Enter a number..." aria-label="Enter a number" />
+      <button onclick="runMultiplication()">Run</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 JyothiDevappa &nbsp;&middot;&nbsp;
+  <a href="../programs.html">Back to Programs</a>
+</footer>
+
+<script>
+  // Copy code to clipboard
+  function copyCode() {
+    const code = document.getElementById('code-block').innerText.trim();
+    navigator.clipboard.writeText(code).then(() => {
+      alert('Code copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy code.');
+    });
+  }
+
+  // Simulate Java program output in JS for multiplication table
+  function runMultiplication() {
+    const inputField = document.getElementById('input-number');
+    const num = parseInt(inputField.value);
+    if (isNaN(num)) {
+      alert('Please enter a valid number.');
+      return;
+    }
+    let output = '';
+    for (let i = 1; i <= 10; i++) {
+      output += `${num} x ${i} = ${num * i}\n`;
+    }
+    document.getElementById('output-block').textContent = output.trim();
+  }
+</script>
+
+</body>
+</html>

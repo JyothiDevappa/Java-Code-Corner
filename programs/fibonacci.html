@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fibonacci Series Generator - Java</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    background-color: #121212;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: #000;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #00ffff;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
+  }
+  header p {
+    margin: 0.3rem 0 0;
+    font-weight: 400;
+    color: #aaa;
+    font-size: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    max-width: 1900px;
+    margin: 2rem auto;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    max-width: 94vw;
+    margin: 2rem 1rem 2rem 3rem; 
+    gap: 1.5rem;
+  }
+
+  .code-panel {
+    flex: 0 0 65%;
+    border-radius: 8px;
+    background: #1e1e1e;
+    box-shadow: 0 0 15px #00ffff33;
+    display: flex;
+    flex-direction: column;
+    min-height: 480px;
+  }
+
+  .code-header {
+    padding: 0.75rem 1rem;
+    background: #000;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .code-container {
+    flex-grow: 1;
+    overflow-x: auto;
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #d4d4d4;
+    background: #1e1e1e;
+    border-radius: 0 0 8px 8px;
+    white-space: pre-wrap; /* wrap lines */
+  }
+  button.copy-btn {
+    background-color: #00ffff;
+    border: none;
+    padding: 0.35rem 0.8rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button.copy-btn:hover {
+    background-color: #00cccc;
+  }
+
+  .output-panel {
+    width: 500px;
+    height: 250px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #00ffff22;
+    transition: box-shadow 0.3s ease;
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #d4d4d4;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .output-panel:hover {
+    box-shadow: 0 0 15px #00ffff55;
+  }
+
+  .output-header {
+    padding: 0.75rem 1rem;
+    background: #000;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .output-content {
+    flex-grow: 1;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+    overflow-y: auto;
+  }
+
+  .input-area {
+    margin: 1rem 0 0 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0 1rem 1rem;
+  }
+  .input-area input[type="number"] {
+    flex-grow: 1;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #222;
+    color: #eee;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+  .input-area button {
+    background: #00ffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .input-area button:hover {
+    background: #00cccc;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    color: #666;
+    background: #000;
+    border-top: 2px solid #00ffff;
+    user-select: none;
+  }
+  footer a {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      flex-direction: column;
+    }
+    .code-panel, .output-panel {
+      min-height: 350px;
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Fibonacci Series Generator</h1>
+  <p>This program prints the Fibonacci sequence up to a given number count.<br>
+     A common logic used to test loops and variable tracking.</p>
+</header>
+
+<main>
+  <!-- Left: Code panel -->
+  <section class="code-panel" aria-label="Code example">
+    <div class="code-header">
+      <span>Java Code</span>
+      <button class="copy-btn" onclick="copyCode()">Copy</button>
+    </div>
+    <pre class="code-container" id="code-block">
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("enter a number");
+        int nums = scan.nextInt();
+
+        printFibonacci(nums);
+    }
+
+    public static void printFibonacci(int nums) {
+        int first = 0, second = 1;
+
+        // Print first two numbers
+        System.out.print(first + " " + second);
+
+        for (int i = 2; i < nums; i++) {
+            int next = first + second;
+
+            // Print next Fibonacci number
+            System.out.print(" " + next);
+
+            // Update previous two numbers
+            first = second;
+            second = next;
+        }
+
+        System.out.println(); // Move to new line
+    }
+}
+    </pre>
+  </section>
+
+  <!-- Right: Output panel -->
+  <section class="output-panel" aria-label="Program output">
+    <div class="output-header">Output</div>
+    <pre class="output-content" id="output-block">
+Enter a number and click Run to generate Fibonacci series.
+    </pre>
+
+    <div class="input-area">
+      <input id="input-number" type="number" min="1" placeholder="Enter number count..." aria-label="Enter number count for Fibonacci" />
+      <button onclick="runFibonacci()">Run</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 JyothiDevappa &nbsp;&middot;&nbsp;
+  <a href="../programs.html">Back to Programs</a>
+</footer>
+
+<script>
+  // Copy code to clipboard
+  function copyCode() {
+    const code = document.getElementById('code-block').innerText.trim();
+    navigator.clipboard.writeText(code).then(() => {
+      alert('Code copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy code.');
+    });
+  }
+
+  // Simulate Java Fibonacci logic in JS for live output
+  function runFibonacci() {
+    const inputElem = document.getElementById('input-number');
+    let nums = Number(inputElem.value);
+
+    if (!nums || nums < 1) {
+      alert('Please enter a valid positive number.');
+      return;
+    }
+
+    let first = 0, second = 1;
+    let output = '';
+
+    if (nums === 1) {
+      output = '0';
+    } else if (nums === 2) {
+      output = '0 1';
+    } else {
+      output = '0 1';
+      for (let i = 2; i < nums; i++) {
+        let next = first + second;
+        output += ' ' + next;
+        first = second;
+        second = next;
+      }
+    }
+
+    document.getElementById('output-block').textContent = output;
+  }
+</script>
+
+</body>
+</html>

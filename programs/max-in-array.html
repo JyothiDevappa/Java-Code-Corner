@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Find Max in Array - Java</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; padding: 0;
+    background-color: #121212;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: #000;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #00ffff;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
+  }
+  header p {
+    margin: 0.3rem 0 0;
+    font-weight: 400;
+    color: #aaa;
+    font-size: 1rem;
+  }
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    max-width: 94vw;
+    margin: 2rem auto;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .code-panel {
+    flex: 0 0 65%;
+    border-radius: 8px;
+    background: #1e1e1e;
+    box-shadow: 0 0 15px #00ffff33;
+    display: flex;
+    flex-direction: column;
+    min-height: 480px;
+  }
+
+  .code-header {
+    padding: 0.75rem 1rem;
+    background: #000;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .code-container {
+    flex-grow: 1;
+    overflow-x: auto;
+    padding: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    color: #d4d4d4;
+    background: #1e1e1e;
+    border-radius: 0 0 8px 8px;
+    white-space: pre-wrap;
+  }
+
+  button.copy-btn {
+    background-color: #00ffff;
+    border: none;
+    padding: 0.35rem 0.8rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  button.copy-btn:hover {
+    background-color: #00cccc;
+  }
+
+  .input-area {
+    margin: 1rem 0 0 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0 1rem 1rem;
+  }
+  .input-area input {
+    flex-grow: 1;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #222;
+    color: #eee;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+  .input-area button {
+    background: #00ffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .input-area button:hover {
+    background: #00cccc;
+  }
+
+  .output-panel {
+    width: 500px;
+    height: 250px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #00ffff22;
+    transition: box-shadow 0.3s ease;
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #d4d4d4;
+  }
+  .output-panel:hover {
+    box-shadow: 0 0 15px #00ffff55;
+  }
+
+  .output-header {
+    padding: 0.75rem 1rem;
+    background: #000;
+    color: #00ffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px 8px 0 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    color: #666;
+    background: #000;
+    border-top: 2px solid #00ffff;
+    user-select: none;
+  }
+  footer a {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      flex-direction: column;
+    }
+    .code-panel, .output-panel {
+      min-height: 350px;
+      margin-bottom: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Find Max in Array</h1>
+  <p>This program finds the maximum number in an integer array.<br>It iterates through the array and keeps track of the largest value.</p>
+</header>
+
+<main>
+  <section class="code-panel" aria-label="Java Code">
+    <div class="code-header">
+      <span>Java Code</span>
+      <button class="copy-btn" onclick="copyCode()">Copy</button>
+    </div>
+    <pre class="code-container" id="code-block">
+// Java program to find maximum element in an array
+public class FindMaxInArray {
+    public static void main(String[] args) {
+        int[] arr = {3, 7, 2, 9, 5};
+
+        int max = arr[0]; // Assume first element is max initially
+
+        // Loop through array to find max
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        System.out.println("Maximum element is: " + max);
+    }
+}
+    </pre>
+  </section>
+
+  <section class="output-panel" aria-label="Output">
+    <div class="output-header">Output</div>
+    <pre class="output-content" id="output-block">
+Maximum element is: 9
+    </pre>
+    <div class="input-area">
+      <input id="input-array" type="text" placeholder="Enter numbers separated by commas (e.g. 3,7,2,9,5)" />
+      <button onclick="runMax()">Run</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 JyothiDevappa &nbsp;&middot;&nbsp;
+  <a href="../programs.html">Back to Programs</a>
+</footer>
+
+<script>
+  function copyCode() {
+    const code = document.getElementById('code-block').innerText.trim();
+    navigator.clipboard.writeText(code).then(() => {
+      alert('Code copied to clipboard!');
+    }).catch(() => {
+      alert('Failed to copy code.');
+    });
+  }
+
+  function runMax() {
+    const input = document.getElementById('input-array').value;
+    if (input.trim() === '') {
+      alert('Please enter some numbers.');
+      return;
+    }
+    const nums = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+    if (nums.length === 0) {
+      alert('Invalid input. Please enter valid integers separated by commas.');
+      return;
+    }
+    let max = nums[0];
+    for (let i = 1; i < nums.length; i++) {
+      if (nums[i] > max) {
+        max = nums[i];
+      }
+    }
+    document.getElementById('output-block').textContent = "Maximum element is: " + max;
+  }
+</script>
+
+</body>
+</html>
